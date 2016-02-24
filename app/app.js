@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/platform/browser', './Todo-Input'], function(exports_1, context_1) {
+System.register(["angular2/platform/browser", "angular2/core", "./todo-input", "./todo-service", "./todo-list", "./status-selector"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,35 +10,43 @@ System.register(['angular2/core', 'angular2/platform/browser', './Todo-Input'], 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, Todo_Input_1;
-    var AppComponent;
+    var browser_1, core_1, todo_input_1, todo_service_1, todo_list_1, status_selector_1;
+    var App;
     return {
         setters:[
-            function (core_1_1) {
-                core_1 = core_1_1;
-            },
             function (browser_1_1) {
                 browser_1 = browser_1_1;
             },
-            function (Todo_Input_1_1) {
-                Todo_Input_1 = Todo_Input_1_1;
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
+            function (todo_input_1_1) {
+                todo_input_1 = todo_input_1_1;
+            },
+            function (todo_service_1_1) {
+                todo_service_1 = todo_service_1_1;
+            },
+            function (todo_list_1_1) {
+                todo_list_1 = todo_list_1_1;
+            },
+            function (status_selector_1_1) {
+                status_selector_1 = status_selector_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
+            App = (function () {
+                function App() {
                 }
-                AppComponent = __decorate([
+                App = __decorate([
                     core_1.Component({
                         selector: 'app',
-                        directives: [Todo_Input_1.TodoInput],
-                        template: '<div><todo-input> </todo-input>  </div>'
+                        directives: [todo_input_1.TodoInput, todo_list_1.TodoList, status_selector_1.StatusSelector],
+                        template: "<div>\n    <todo-input></todo-input>\n    <status-selector (select)=\"status = $event\"></status-selector>\n    <todo-list [status]=\"status\"></todo-list>\n    </div>"
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], App);
+                return App;
             }());
-            exports_1("AppComponent", AppComponent);
-            browser_1.bootstrap(AppComponent);
+            browser_1.bootstrap(App, [todo_service_1.TodoService]);
         }
     }
 });
